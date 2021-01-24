@@ -45,7 +45,15 @@ namespace LinkedIn_CLRReflectionForDevelopers
             mirroredObject.DumpType();    // Generates an exception,  System.Object has no base class
             */
             var mirroredObject = new Mirror(typeof(System.Int32));
-            mirroredObject.DumpType();    
+            mirroredObject.DumpType();
+            #endregion
+
+            #region Properties API
+            // Field equivalent
+            // By default nonpubluc methods are not visible
+            // Use BindingFlags to specify the scope
+            mirroredPoint.DumpProperties();
+
             #endregion
 
 
