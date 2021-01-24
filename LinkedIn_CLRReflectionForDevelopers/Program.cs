@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace LinkedIn_CLRReflectionForDevelopers
 {
@@ -26,7 +27,7 @@ namespace LinkedIn_CLRReflectionForDevelopers
 
             #endregion
             #region Invoking Methods
-            #endregion
+           
             var pt2 = ctor.Invoke(new object[] { 12, 13 });
             Console.WriteLine("Pt = {0}, pt2 = {1}", pt, pt2);
             
@@ -34,9 +35,17 @@ namespace LinkedIn_CLRReflectionForDevelopers
             var dist = ptType.GetMethod("Distance");
             var result = dist.Invoke(null, new object[] { pt, pt2 });
             Console.WriteLine("Distance = {0}", result);
-
-
             #endregion
+            #region accessing fields
+            // Because the backing field is private, need to use binding flags
+            var xField = ptType.GetField("<X>k__BackingField", System.Reflection.BindingFlags.NonPublic | BindingFlags.Instance);
+            Console.WriteLine("x backing filed = {0}", xField.GetValue(pt));
+            xField.SetValue(pt, 0);
+            Console.WriteLine("pt = {0}", pt);
+            Console.WriteLine("pt.X = {0}", xProp.GetValue(pt));
+        #endregion
+
+#endregion
         }
 
         public static void OldMain()
