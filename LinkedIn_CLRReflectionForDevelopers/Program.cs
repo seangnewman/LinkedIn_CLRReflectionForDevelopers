@@ -56,7 +56,10 @@ namespace LinkedIn_CLRReflectionForDevelopers
 
             #endregion
 
-
+            #region MethodBase and MethodInfo
+            //Metadata about methods
+            mirroredPoint.DumpMethods();
+            #endregion
         }
     }
 }

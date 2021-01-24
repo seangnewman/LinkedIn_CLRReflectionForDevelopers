@@ -10,6 +10,8 @@ namespace LinkedIn_CLRReflectionForDevelopers
     class Mirror
     {
         public Type MirroredType { get; set; }
+
+        private const BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
         public Mirror(Type type)
         {
             MirroredType = type;
@@ -31,7 +33,7 @@ namespace LinkedIn_CLRReflectionForDevelopers
         {
             Console.WriteLine("Properties:");
 
-            var flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+   
             foreach (var prop in MirroredType.GetProperties(flags))
             {
                 Console.WriteLine(" {0} : {1}", prop.Name, prop.PropertyType);
@@ -39,6 +41,21 @@ namespace LinkedIn_CLRReflectionForDevelopers
             }
 
             
+        }
+
+        public void DumpMethods()
+        {
+            Console.WriteLine("Methods:");
+
+            foreach (var meth in MirroredType.GetMethods(flags))
+            {
+                Console.WriteLine(" {0} : {1}", meth.Name, meth.ReturnType);
+                foreach (var param in meth.GetParameters())
+                {
+                    Console.WriteLine("  takes : {0} : {1}", param.Name, param.ParameterType );
+                }
+            }
+
         }
     }
 }
