@@ -6,6 +6,25 @@ namespace LinkedIn_CLRReflectionForDevelopers
     {
         static void Main(string[] args)
         {
+            #region Advanced
+            #region Constructing Objects
+            Type ptType = typeof(Point);
+           var ctor =  ptType.GetConstructor(new Type[] {typeof(int), typeof(int) });
+            var pt = ctor.Invoke(new object[] { 12, 12 });
+
+            Console.WriteLine("Constructed {0}", pt);
+            #endregion
+            #region Accessing Properties
+            #endregion
+
+
+
+
+            #endregion
+        }
+
+        public static void OldMain()
+        {
             #region Namespace and Types
             // var ptType = typeof(Point);             // Returns the type object
             //Console.WriteLine(ptType);
@@ -37,7 +56,7 @@ namespace LinkedIn_CLRReflectionForDevelopers
             }
 
             var pt = new Point(5, 5);
-           // var mirroredPoint = new Mirror(typeof(Point));
+            // var mirroredPoint = new Mirror(typeof(Point));
             var mirroredPoint = new Mirror(pt.GetType());
             mirroredPoint.DumpType();
             /*
