@@ -7,25 +7,33 @@ namespace LinkedIn_CLRReflectionForDevelopers
         static void Main(string[] args)
         {
             #region Advanced
-            #region Constructing Objects
             Type ptType = typeof(Point);
-           var ctor =  ptType.GetConstructor(new Type[] {typeof(int), typeof(int) });
+            var ctor = ptType.GetConstructor(new Type[] { typeof(int), typeof(int) });
             var pt = ctor.Invoke(new object[] { 12, 12 });
 
-            Console.WriteLine("Constructed {0}", pt);
+            #region Constructing Objects
+
+            // Console.WriteLine("Constructed {0}", pt);
             #endregion
             #region Accessing Properties
-          // Because the X and Y properties are public, we do not need BindingFlags
+            //// Because the X and Y properties are public, we do not need BindingFlags
             var xProp = ptType.GetProperty("X");
-            var yProp = ptType.GetProperty("Y");
-            Console.WriteLine(xProp.GetValue(pt));   // Should return 12
+            //  var yProp = ptType.GetProperty("Y");
+            //  Console.WriteLine(xProp.GetValue(pt));   // Should return 12
             xProp.SetValue(pt, 24);
-            //xProp.SetValue(pt, 24);    -- This will compile but create a runtime error.  The compiler will not save you!
-            Console.WriteLine("Constructed {0}", pt);
+            //  //xProp.SetValue(pt, 24);    -- This will compile but create a runtime error.  The compiler will not save you!
+            //  Console.WriteLine("Constructed {0}", pt);
 
             #endregion
-
-
+            #region Invoking Methods
+            #endregion
+            var pt2 = ctor.Invoke(new object[] { 12, 13 });
+            Console.WriteLine("Pt = {0}, pt2 = {1}", pt, pt2);
+            
+            // Because there is only one Distance method, we can pass the name only. 
+            var dist = ptType.GetMethod("Distance");
+            var result = dist.Invoke(null, new object[] { pt, pt2 });
+            Console.WriteLine("Distance = {0}", result);
 
 
             #endregion
