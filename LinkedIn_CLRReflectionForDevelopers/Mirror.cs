@@ -71,5 +71,16 @@ namespace LinkedIn_CLRReflectionForDevelopers
                 }
             }
         }
+
+        public void DumpFields()
+        {
+            Console.WriteLine("Fields: ");
+
+            foreach (var fld in MirroredType.GetFields(flags))
+            {
+                Console.WriteLine("  {0} : {1}", fld.Name, fld.FieldType);
+            }
+
+        }
     }
 }

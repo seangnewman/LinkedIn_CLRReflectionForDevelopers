@@ -64,6 +64,10 @@ namespace LinkedIn_CLRReflectionForDevelopers
             #region Constructors
             mirroredPoint.DumpConstructors();
             #endregion
+
+            #region Fields
+            mirroredPoint.DumpFields();
+            #endregion
         }
     }
 }
