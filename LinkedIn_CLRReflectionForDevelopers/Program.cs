@@ -60,6 +60,10 @@ namespace LinkedIn_CLRReflectionForDevelopers
             //Metadata about methods
             mirroredPoint.DumpMethods();
             #endregion
+
+            #region Constructors
+            mirroredPoint.DumpConstructors();
+            #endregion
         }
     }
 }

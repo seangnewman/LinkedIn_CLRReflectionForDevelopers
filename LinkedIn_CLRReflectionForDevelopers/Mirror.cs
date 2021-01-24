@@ -57,5 +57,19 @@ namespace LinkedIn_CLRReflectionForDevelopers
             }
 
         }
+
+        public void DumpConstructors()
+        {
+            Console.WriteLine("Constructors:");
+
+            foreach (var ctor in MirroredType.GetConstructors(flags))
+            {
+                Console.WriteLine("------->");
+                foreach (var param in ctor.GetParameters())
+                {
+                    Console.WriteLine("  takes: {0} : {1}", param.Name, param.ParameterType);
+                }
+            }
+        }
     }
 }
